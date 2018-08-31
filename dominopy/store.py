@@ -21,6 +21,9 @@ class Store:
 		# Compulsory initial request
 		self.make_initial_request(city, dominos_city, dominos_locality, dominos_code)
 
+		# Save menu
+		self.get_menu()
+
 
 	def extract_csrf_token(self, response):
 		response = response.text.split('\n')
@@ -59,4 +62,4 @@ class Store:
 	def get_menu(self):
 		url = "https://pizzaonline.dominos.co.in/view/product/?isAjaxRequest=json&store_code=" + self.store_code
 		r = self.session.get(url)
-		print(r.json())
+		self.menu = r.json()
