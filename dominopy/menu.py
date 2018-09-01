@@ -1,5 +1,6 @@
 import requests
 import re
+from terminaltables import AsciiTable
 
 class Menu:
 	def __init__(self, store):
@@ -7,7 +8,12 @@ class Menu:
 		self.menu = store.menu;
 
 	def search(self, name):
-		# Search for item in pizza menu
+		# Add table row headers
+		table_data = [
+		    ['ID', 'NAME', 'PRICE (R M L)'],
+		]
+
+		# Search for item in menu
 		item_list = self.menu['pizza']
 		for category in item_list:
 			total_item_in_category = len(category) - 3
@@ -15,9 +21,15 @@ class Menu:
 				product_name = category[str(i)]['product_name']
 				product_id = category[str(i)]['product_id']
 				price = category[str(i)]['product_subtitle']
+				price = price.replace('*', '').replace('+', '').replace('^', '')
 				match = re.search(name, product_name, re.I)
 				if match:
-					print(product_id, '\t', product_name, '\t\t\t', price)
+					# Add item to table
+					table_data.append([product_id, product_name, price]);\
+
+		# Create and display table
+		table = AsciiTable(table_data)
+		print(table.table)
 
 	def get_menu(self):
 		return self.menu;
