@@ -19,11 +19,11 @@ class Menu:
 			total_item_in_category = len(category) - 3
 			for i in range(total_item_in_category):
 				product_name = category[str(i)]['product_name']
-				product_id = category[str(i)]['product_id']
-				price = category[str(i)]['product_subtitle']
-				price = price.replace('*', '').replace('+', '').replace('^', '')
 				match = re.search(name, product_name, re.I)
 				if match:
+					product_id = category[str(i)]['product_id']
+					price = category[str(i)]['product_subtitle']
+					price = price.replace('*', '').replace('+', '').replace('^', '')
 					# Add item to table
 					table_data.append([product_id, product_name, price]);\
 

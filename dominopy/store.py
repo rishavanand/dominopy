@@ -63,3 +63,11 @@ class Store:
 		url = "https://pizzaonline.dominos.co.in/view/product/?isAjaxRequest=json&store_code=" + self.store_code
 		r = self.session.get(url)
 		self.menu = r.json()
+
+	def view_order(self):
+		url = "https://pizzaonline.dominos.co.in/view/cart"
+		data = {
+			'isAjaxRequest': 'json'
+		}
+		response = self.session.post(url, data = data)
+		print(response.json())
