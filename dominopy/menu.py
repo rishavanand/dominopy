@@ -25,7 +25,7 @@ class Menu:
 					price = category[str(i)]['product_subtitle']
 					price = price.replace('*', '').replace('+', '').replace('^', '')
 					# Add item to table
-					table_data.append([product_id, product_name, price]);\
+					table_data.append([product_id, product_name, price])
 
 		# Create and display table
 		table = AsciiTable(table_data)
