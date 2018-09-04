@@ -9,6 +9,7 @@ class Store:
 		dominos_locality = address.address[0][1]
 		dominos_code = address.address[-1]
 		self.store_code = dominos_code[1:]
+		self.address = address
 
 		# Create session
 		url = "https://pizzaonline.dominos.co.in"

@@ -1,11 +1,13 @@
 import requests
 from terminaltables import AsciiTable
+from .store import Store
 
 class Order:
 	def __init__(self, store):
-		# Save menu and session
+		# Create a new session for new order object
+		self.session = Store(store.address).session
+		# Save menu
 		self.menu = store.menu
-		self.session = store.session
 		self.items = []
 
 	def get_product_details(self, item_id, size):
